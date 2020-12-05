@@ -3,6 +3,8 @@ export SILENCE = @
 
 CPPUTEST_EXE_FLAGS = -v -c
 CPPUTEST_USE_VPATH = Y
+# Turn on CppUMock
+CPPUTEST_USE_EXTENSIONS = Y
 
 BUILD_DIR = build
 CURRENT_DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
@@ -11,12 +13,13 @@ SRC_DIR := $(PROJECT_DIR)/src
 TEST_DIR := $(CURRENT_DIR)
 
 COMPONENT_NAME=ModuleA
-SRC_FILES      = \
+SRC_FILES = \
 	$(SRC_DIR)/module_a/module_a.c \
 
 TEST_SRC_FILES = \
-	$(TEST_DIR)/src/testModuleA.cpp \
 	$(TEST_DIR)/src/TestRunner.cpp \
+	$(TEST_DIR)/src/testModuleA.cpp \
+	$(TEST_DIR)/mocks/mock_my_math.cpp \
 
 INCLUDE_DIRS  = \
 	$(SRC_DIR)/module_a \
